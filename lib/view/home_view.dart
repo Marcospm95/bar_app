@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:marcos_platas_bar/view/crear_pedido_view.dart';
 import '../viewmodel/home_view_model.dart';
 import '../model/pedido.dart';
-
+/// Pantalla que muestra la lista de pedidos creados y permite añadir nuevos pedidos
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
@@ -18,13 +18,13 @@ class _HomeViewState extends State<HomeView> {
     super.initState();
     homeVM = HomeViewModel();
   }
-
+/// Abre la pantalla de crear pedido y espera el pedido
   void abrirPedido() async {
     final Pedido? nuevo = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const CrearPedidoView()),
     );
-
+/// Si el usuario no guarda el pedido sera null
     if (nuevo != null) {
       setState(() {
         homeVM.anadirPedido(nuevo);
@@ -40,6 +40,7 @@ class _HomeViewState extends State<HomeView> {
         padding: const EdgeInsets.all(15),
         child: Column(
           children: [
+            /// Lista de pedidos guardados
             Expanded(
               child: ListView(
                 children: homeVM.pedidos.map((p) {

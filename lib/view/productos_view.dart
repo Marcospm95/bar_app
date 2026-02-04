@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import '../viewmodel/productos_view_model.dart';
 import '../model/producto.dart';
-
+/// Pantalla de seleccoón de productos.
+/// 
+/// Funciones:
+/// - ver todos los productos disponibles
+/// - añadir o quitar cantidades
+/// - confirmar la selección
 class ProductosView extends StatefulWidget {
   const ProductosView({super.key});
 
@@ -13,6 +18,7 @@ class _ProductosViewState extends State<ProductosView> {
   final ProductosViewModel vm = ProductosViewModel();
   final Map<Producto, int> productoElegido = {};
 
+  /// Aumenta en 1 la cantidad del producto seleccionado
   void sumarProductos(Producto p) {
     setState(() {
       if (productoElegido.containsKey(p)) {
@@ -23,6 +29,7 @@ class _ProductosViewState extends State<ProductosView> {
     });
   }
 
+  /// Disminuye en 1 la cantidad del producto seleccionado
   void restarProductos(Producto p) {
     if (!productoElegido.containsKey(p)) return;
     setState(() {
@@ -34,11 +41,11 @@ class _ProductosViewState extends State<ProductosView> {
       }
     });
   }
-
+ /// Comfirma la seleecion y devuelve el producto a la pantalla anterior
   void confirmar() {
     Navigator.pop(context, productoElegido);
   }
-
+  /// Cancela la selección y vuelve sin datos
   void cancelar() {
     Navigator.pop(context);
   }

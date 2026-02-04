@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marcos_platas_bar/model/producto.dart';
-
+/// ViewModel que contiene la lista de productos 
 class ProductosViewModel extends ChangeNotifier {
   final List<Producto> productos = [
     Producto("Colacao", 2),

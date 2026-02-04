@@ -1,3 +1,4 @@
+/// Modelo que representa un producto del bar
 class Producto {
   
   final String nombre;

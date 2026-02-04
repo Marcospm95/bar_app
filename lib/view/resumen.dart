@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import '../viewmodel/crear_pedido_view_model.dart';
 import '../model/producto.dart';
-
+/// Pantalla que muestra el resumen del pedido
+///
+/// Funciones:
+/// - Mostrar la mesa
+/// - Mostrar los prodcutos con las cantidades
+/// - Mostrar el precio total
 class ResumenPedidoView extends StatelessWidget {
   const ResumenPedidoView({super.key});
 
@@ -23,6 +28,7 @@ class ResumenPedidoView extends StatelessWidget {
 
             const Text("Productos:"),
 
+            /// Lista de productos con las cantidades
             Expanded(
               child: ListView(
                 children: vm.productos.entries.map((e) {

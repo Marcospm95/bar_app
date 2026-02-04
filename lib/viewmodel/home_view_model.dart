@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import '../model/pedido.dart';
 import '../model/producto.dart';
-
+/// ViewModel de la pantalla principal
+/// 
+/// Gestiona la lista de pedidos y calcula el total de los productos
 class HomeViewModel extends ChangeNotifier {
   final List<Pedido> pedidos = [];
 
@@ -21,17 +23,20 @@ class HomeViewModel extends ChangeNotifier {
     );
   }
 
+  /// Añade un pedido nuevo a la lista
   void anadirPedido(Pedido p) {
     pedidos.add(p);
     notifyListeners();
   }
 
+  /// Calcula el total de productos en un pedido
   int totalProductos(Pedido p) {
     int total = 0;
     p.productos.forEach((prod, cant) => total += cant);
     return total;
   }
 
+  /// Calcula el precio total de un pedido
   double totalPrecio(Pedido p) {
     double total = 0;
     p.productos.forEach((prod, cant) {

@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import '../viewmodel/crear_pedido_view_model.dart';
 import 'productos_view.dart';
 
+/// Pantalla de creacion de pedidos
+/// 
+/// Funciones:
+/// - introducir la mesa
+/// - seleccionar producto y cantidades
+/// - ver el resumen del peido
+/// - guardar el pedido
 class CrearPedidoView extends StatefulWidget {
   const CrearPedidoView({super.key});
 
@@ -12,12 +19,14 @@ class CrearPedidoView extends StatefulWidget {
 class _CrearPedidoViewState extends State<CrearPedidoView> {
   final CrearPedidoViewModel vm = CrearPedidoViewModel();
 
+  /// Abre la pantalla de productos y espera los productos elegidos
   void abrirProductos() async {
     var seleccionados = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ProductosView()),
     );
 
+  /// si el usuario confirma se guardan los productos, si cancela es null
     if (seleccionados != null) {
       setState(() {
         vm.guardarProductos(seleccionados);
@@ -25,15 +34,17 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
     }
   }
 
+  /// Abre la pantalla de resumen usando una ruta
   void abrirResumen() {
     Navigator.pushNamed(context, '/resumen', arguments: vm);
   }
 
+ ///Guarda el pedido y vuelve a la pantalla anterior con el pedido creado
   void guardar() {
     if (!vm.controlErrores()) {
       return;
     }
-
+  /// si el pedido no esta completo no se guarda 
     var pedidoCompleto = vm.crearPedido();
     Navigator.pop(context, pedidoCompleto);
   }
@@ -46,6 +57,7 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
         padding: const EdgeInsets.all(15),
         child: Column(
           children: [
+            /// TextField para introducir el numero de mesa
             TextField(
               decoration: const InputDecoration(
                 labelText: "Mesa",
@@ -60,7 +72,8 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
               child: const Text("Añadir productos"),
             ),
             const SizedBox(height: 20),
-
+            
+            ///Lista de productos seleccionados con sus cantidades
             Expanded(
               child: ListView(
                 children: vm.productos.entries.map((entrada) {
@@ -74,7 +87,7 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
                 }).toList(),
               ),
             ),
-
+            /// Precio del pedido
             Text(
               "Total: ${vm.precioTotal().toStringAsFixed(2)} €",
               style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),

@@ -1,16 +1,20 @@
 # marcos_platas_bar
 
-A new Flutter project.
+Aplicación movil desarrollada en Flutter para gestionar los pedidos de un bar.
+Permite seleccionar los productos por mesa, ver resumen del pedido y guardarlos.
 
-## Getting Started
+## Tecnologias usadas
 
-This project is a starting point for a Flutter application.
+- Flutter
+- Dart
+- Material Design
+- Arquitectura MVVM 
 
-A few resources to get you started if this is your first Flutter project:
+## Caracteristicas principales
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Lista de pedidos por mesa
+- Creación de pedidos
+- Selección de productos y cantidades
+- Ver resumen del pedido
+- Calculo del total de productos y el precio
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
