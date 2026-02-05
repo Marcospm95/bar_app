@@ -48,6 +48,9 @@ class _ProductosViewState extends State<ProductosView> {
   /// Cancela la selección y vuelve sin datos
   void cancelar() {
     Navigator.pop(context);
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Seleccion cancelada"))
+    );
   }
 
   @override
@@ -67,17 +70,23 @@ class _ProductosViewState extends State<ProductosView> {
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  IconButton(
+                  Tooltip(
+                    message: "Quitar una unidad",
+                    child: IconButton(
                     onPressed: () {
                       restarProductos(p);
                     },
                     icon: const Icon(Icons.remove),
                   ),
-                  IconButton(
+                  ),
+                  Tooltip(
+                    message: "Añadir una unidad",
+                   child:IconButton(
                     onPressed: () {
                       sumarProductos(p);
                     },
                     icon: const Icon(Icons.add),
+                  ),
                   ),
                 ],
               ),
@@ -90,10 +99,17 @@ class _ProductosViewState extends State<ProductosView> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ElevatedButton(onPressed: cancelar, child: const Text("Cancelar")),
-            ElevatedButton(
+            Tooltip(
+              message: "Cancelar selección",
+            child:ElevatedButton(onPressed: cancelar, child: const Text("Cancelar")
+            ),
+            ),
+            Tooltip(
+              message: "Confirmar selección",
+              child: ElevatedButton(
               onPressed: confirmar,
               child: const Text("Confirmar"),
+            ),
             ),
           ],
         ),

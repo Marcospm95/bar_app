@@ -31,6 +31,9 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
       setState(() {
         vm.guardarProductos(seleccionados);
       });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Productos añadidos")),
+      );
     }
   }
 
@@ -67,9 +70,12 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
               },
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
+            Tooltip(
+              message: "Seleccionar productos para el pedido",
+              child: ElevatedButton(
               onPressed: abrirProductos,
               child: const Text("Añadir productos"),
+            ),
             ),
             const SizedBox(height: 20),
             
@@ -98,19 +104,28 @@ class _CrearPedidoViewState extends State<CrearPedidoView> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ElevatedButton(
+                Tooltip(
+                  message: "Ver el resumen del pedido",
+                  child: ElevatedButton(
                   onPressed: abrirResumen,
                   child: const Text("Ver resumen"),
                 ),
-                ElevatedButton(
+                ),
+                Tooltip(
+                  message: "Guardar el pedido",
+                  child: ElevatedButton(
                   onPressed: guardar,
                   child: const Text("Guardar pedido"),
                 ),
-                ElevatedButton(
+                ),
+                Tooltip(
+                  message: "Cancelar el pedido",
+                  child: ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
                   child: const Text("Cancelar"),
+                ),
                 ),
               ],
             ),

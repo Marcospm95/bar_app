@@ -29,6 +29,9 @@ class _HomeViewState extends State<HomeView> {
       setState(() {
         homeVM.anadirPedido(nuevo);
       });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Pedido guardado correctamente"))
+      );
     }
   }
 
@@ -57,17 +60,20 @@ class _HomeViewState extends State<HomeView> {
             ),
             const SizedBox(height: 20),
 
-            ElevatedButton(
-              onPressed: abrirPedido,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(
-                  vertical: 15,
-                  horizontal: 30,
+            Tooltip(
+              message: "Crear un pedido nuevo",
+              child: ElevatedButton(
+                onPressed: abrirPedido,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 15,
+                    horizontal: 30,
+                  ),
                 ),
+                child: const Text("Nuevo Pedido"),
               ),
-              child: const Text("Nuevo Pedido"),
             ),
           ],
         ),
